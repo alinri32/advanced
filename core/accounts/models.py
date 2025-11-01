@@ -52,3 +52,13 @@ class User (AbstractBaseUser , PermissionsMixin):
     def __str__(self):
         return self.email
     
+class Profile(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=254)
+    last_name = models.CharField(max_length=254)
+    image = models.ImageField(blank=True , null=True)
+    bio = models.TextField()
+
+    def __str__(self):
+        return self.user.email
+    
